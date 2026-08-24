@@ -29,13 +29,13 @@ Please follow our [guide](docs/python_help.md) to ensure your computer is proper
 
 # Help
 
-To view the complete list of functions and variables in this package, type in
+To view the complete list of functions in this package, type in
    ```
    ?FlaSR`*
    ```
 
 For details on a FlaSR function's arguments, options, and outputs, run
    ```
-   FlaSRHelp[function];
+   FlaSRHelp[FlaSR function name];
    ```
 This documentation is also available on our [function documentation](docs/function_docs.md) page.
