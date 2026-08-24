@@ -30,16 +30,16 @@ phys (True|False): Indicates whether function arguments contain U-spins (False) 
 Returns:
 system (Association): All information about the system's representations, amplitudes, and ASRs. Keys and values:
 - \"Irreps\" (List): Inputted U-spin representations (List of Reals) in {{in reps}, {H rep}, {out reps}} format.
-- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Symbols) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty for group-theoretic systems.
+- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Symbols) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty when phys->False.
 - \"n doublets\" (Real): Number of would-be doublets.
 - \"p factor\" (Real): (-1)^p factor for defining a/s-type amplitudes.
 - \"n amps\" (Real): Number of amplitudes in the system.
 - \"Amplitudes\" (List): Contains an Association for each amplitude pair in the system. Keys and values:
-	- \"Processes\" (List): Contains physical processes (String) for an amplitude and its U-spin conjugate. Only available for physical systems.
-	- \"QNs\" (List): Contains m quantum number labels (String), where m is the third component of U-spin, for an amplitude and its U-spin conjugate.
-	- \"n-tuples\" (List): Contains n-tuple labels (String) for an amplitude and its U-spin conjugate. n-tuples represent amplitudes as comma-separated tuples of substrings, where each substring is comprised of '-'s and '+'s and encodes the u and m QNs of a component of a participating multiplet. Signs are inverted for initial state and Hamiltonian components.
-	- \"Coords\" (String): Coordinate (String) for an amplitude pair in the lattice used to derive sum rules.
-	- \"Binary indices\" (List): Contains indices (Real), written in base 10, for an amplitude and its U-spin conjugate. Indices are derived by converting the n-tuples into binary numbers through '-' <-> 0 and '+' <-> 1 and removing commas.
+	- \"Process\" (List): Contains physical processes (String) for an amplitude and its U-spin conjugate. Only available for physical systems.
+	- \"QN label\" (List): Contains m quantum number labels (String), where m is the third component of U-spin, for an amplitude and its U-spin conjugate.
+	- \"n-tuple\" (List): Contains n-tuple labels (String) for an amplitude and its U-spin conjugate. n-tuples represent amplitudes as comma-separated tuples of substrings, where each substring is comprised of '-'s and '+'s and encodes the u and m QNs of a component of a participating multiplet. Signs are inverted for initial state and Hamiltonian components.
+	- \"Coord\" (String): Coordinate (String) for an amplitude pair in the lattice used to derive sum rules.
+	- \"Binary index\" (List): Contains binary indices (Real), written in base 10, for an amplitude and its U-spin conjugate. Indices are derived by converting the n-tuples into binary numbers through '-' <-> 0 and '+' <-> 1 and removing commas.
 	- \"mu\" (Real): mu-factor for the coordinate in the lattice used to derive sum rules.
 	- \"CG\" (Real): Clebsch-Gordan coefficient from symmetrization for systems without doublets. Equal to 1 for all amplitudes for a system with at least one doublet.
 	- \"CKM\" (List): Contains weak interaction factors (Expression) from the Hamiltonian. Only appears for physical systems.
@@ -68,20 +68,20 @@ obs (\"Diff\"|\"Int\"): Indicates whether A2SRs should be treated as the sum rul
 Returns:
 system (Association): All information about the system's representations, amplitudes, ASRs, and A2SRs. Keys and values:
 - \"Irreps\" (List): Inputted U-spin representations (List of Reals) in {{in reps}, {H rep}, {out reps}} format.
-- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Symbols) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty for group-theoretic systems.
+- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Symbols) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty when phys->False.
 - \"n doublets\" (Real): Number of would-be doublets.
 - \"p factor\" (Real): (-1)^p factor for defining a/s-type amplitudes.
 - \"n amps\" (Real): Number of amplitudes in the system.
 - \"Amplitudes\" (List): Contains an Association for each amplitude pair in the system. Keys and values:
-	- \"Processes\" (List): Contains physical processes (String) for an amplitude and its U-spin conjugate. Only available for physical systems.
-	- \"QNs\" (List): Contains m quantum number labels (String), where m is the third component of U-spin, for an amplitude and its U-spin conjugate.
-	- \"n-tuples\" (List): Contains n-tuple labels (String) for an amplitude and its U-spin conjugate. n-tuples represent amplitudes as comma-separated tuples of substrings, where each substring is comprised of '-'s and '+'s and encodes the u and m QNs of a component of a participating multiplet. Signs are inverted for initial state and Hamiltonian components.
-	- \"Coords\" (String): Coordinate (String) for an amplitude pair in the lattice used to derive sum rules.
-	- \"Binary indices\" (List): Contains indices (Real), written in base 10, for an amplitude and its U-spin conjugate. Indices are derived by converting the n-tuples into binary numbers through '-' <-> 0 and '+' <-> 1 and removing commas.
+	- \"Process\" (List): Contains physical processes (String) for an amplitude and its U-spin conjugate. Only available for physical systems.
+	- \"QN label\" (List): Contains m quantum number labels (String), where m is the third component of U-spin, for an amplitude and its U-spin conjugate.
+	- \"n-tuple\" (List): Contains n-tuple labels (String) for an amplitude and its U-spin conjugate. n-tuples represent amplitudes as comma-separated tuples of substrings, where each substring is comprised of '-'s and '+'s and encodes the u and m QNs of a component of a participating multiplet. Signs are inverted for initial state and Hamiltonian components.
+	- \"Coord\" (String): Coordinate (String) for an amplitude pair in the lattice used to derive sum rules.
+	- \"Binary index\" (List): Contains binary indices (Real), written in base 10, for an amplitude and its U-spin conjugate. Indices are derived by converting the n-tuples into binary numbers through '-' <-> 0 and '+' <-> 1 and removing commas.
 	- \"mu\" (Real): mu-factor for the coordinate in the lattice used to derive sum rules.
 	- \"CG\" (Real): Clebsch-Gordan coefficient from symmetrization for systems without doublets. Equal to 1 for all amplitudes for a system with at least one doublet.
 	- \"CKM\" (List): Contains weak interaction factors (Expression) from the Hamiltonian. Only appears for physical systems.
-	- \"Integrated channel #s\" (List): Contains numbers (Real) enumerating unique integrated channels by the order in which they appear in the amplitude table. Only appears for physical systems with obs->\"Int\".
+	- \"Integrated channel ID\" (List): Contains numbers (Real) enumerating unique integrated channels by the order in which they appear in the amplitude table. Only appears for physical systems with obs->\"Int\".
 - \"n ASRs\" (List): Contains the number of amplitude sum rules (Real) found at each order of breaking.
 - \"ASRs\" (List): Contains matrices of amplitude sum rule coefficients (Real) listed by order of breaking.
 - \"n A2SRs\" (List): Contains the number of amplitude-squared sum rules (Real) found at each order of breaking.
@@ -151,7 +151,7 @@ system (Association): A system association. See the documentation for generateSR
 Options:
 ampType (List): Contains 1 or 2 symbol(s) to select amplitude type. Convention is to set ampType->{A} for A-type amplitudes and ampType->{a,s} for a/s-type amplitudes. Default: ampType->None. Note: only one of ampType or amp2Type should be specified to print either ASRs or A2SRs; if both are specified, printSRs will print A2SRs by default.
 amp2Type (List): Contains 1 or 2 symbol(s) to select squared amplitude type. Convention is to set amp2Type->{A} for |A\!\(\*SuperscriptBox[\(|\), \(2\)]\) amplitudes-squared and amp2Type->{\[CapitalDelta],\[CapitalSigma]} for \[CapitalDelta]/\[CapitalSigma]-type amplitudes-squared. Default: amp2Type->None. Note: only one of ampType or amp2Type should be specified to print either ASRs or A2SRs; if both are specified, printSRs will print A2SRs by default.
-ampFormat (String): Labeling convention for displaying amplitudes. Options are physical process names (\"Processes\", only available for A-type amps), m quantum numbers (\"QNs\"), n-tuples (\"n-tuples\"), coordinate notation (\"Coords\", only available for a/s-type amps), numbered indices (\"Binary indices\"), or user-defined labels for a column of the amplitude table (name of custom column). Default: ampFormat->\"n-tuples\" unless the system is a physical system, in which case ampFormat->\"Processes\".
+ampFormat (String): Labeling convention for displaying amplitudes. Options are physical process names (\"Process\", only available for A-type amps), m quantum numbers (\"QN label\"), n-tuples (\"n-tuple\"), coordinate notation (\"Coord\", only available for a/s-type amps), binary indices (\"Binary index\"), or user-defined labels for a column of the amplitude table (name of custom column). Default: ampFormat->\"n-tuple\" unless the system is a physical system, in which case ampFormat->\"Process\".
 showSRs (True|False): Indicates whether to print sum rules. Default: showSRs->True.
 expandSRs (True|False): Indicates whether to display each row of a sum rules matrix as an expanded algebraic expression of amplitudes (True) or to keep each row as a list of coefficients (False). Default: expandSRs->False.
 CKM (True|False): Indicates whether to include CKM factors in the sum rules. Default: CKM->False.
@@ -178,7 +178,7 @@ showASRs (True|False): Indicates whether to print ASRs. Default: showASRs->True.
 showA2SRs (True|False): Indicates whether to print A2SRs. Default: showA2SRs->True. Note: while both ampType and amp2Type can be separately specified, the other formatting options (e.g., ampFormat) will be shared for printing both ASRs and A2SRs.
 ampType (List): Contains 1 or 2 symbol(s) to select amplitude type. Convention is to set ampType->{A} for A-type amplitudes and ampType->{a,s} for a/s-type amplitudes. Default: ampType->None. Note: only one of ampType or amp2Type should be specified to print either ASRs or A2SRs; if both are specified, printSRs will print A2SRs by default.
 amp2Type (List): Contains 1 or 2 symbol(s) to select squared amplitude type. Convention is to set amp2Type->{A} for |A\!\(\*SuperscriptBox[\(|\), \(2\)]\) amplitudes-squared and amp2Type->{\[CapitalDelta],\[CapitalSigma]} for \[CapitalDelta]/\[CapitalSigma]-type amplitudes-squared. Default: amp2Type->None. Note: only one of ampType or amp2Type should be specified to print either ASRs or A2SRs; if both are specified, printSRs will print A2SRs by default.
-ampFormat (String): Labeling convention for displaying amplitudes. Options are physical process names (\"Processes\", only available for A-type amps), m quantum numbers (\"QNs\"), n-tuples (\"n-tuples\"), coordinate notation (\"Coords\", only available for a/s-type amps), numbered indices (\"Binary indices\"), or user-defined labels for a column of the amplitude table (name of custom column). Default: ampFormat->\"n-tuples\" unless the system is a physical system, in which case ampFormat->\"Processes\".
+ampFormat (String): Labeling convention for displaying amplitudes. Options are physical process names (\"Process\", only available for A-type amps), m quantum numbers (\"QN label\"), n-tuples (\"n-tuple\"), coordinate notation (\"Coord\", only available for a/s-type amps), binary indices (\"Binary index\"), or user-defined labels for a column of the amplitude table (name of custom column). Default: ampFormat->\"n-tuple\" unless the system is a physical system, in which case ampFormat->\"Process\".
 expandSRs (True|False): Indicates whether to display each row of a sum rules matrix as an expanded algebraic expression of amplitudes (True) or to keep each row as a list of coefficients (False). Default: expandSRs->False.
 CKM (True|False): Indicates whether to include CKM factors in the sum rules. Default: CKM->False.
 b (All|Real|List): Breaking order(s) at which to print sum rules. User can print sum rules to all possible orders of breaking (All), at a particular order (Real, 0 <= b <= highest order of breaking), or over a range of orders of breaking ({start b (min: 0), end b (max: highest order of breaking, or All), increment}). Default: b->All.
@@ -228,27 +228,27 @@ pyEval[expr_,args_:<||>]:=ExternalEvaluate[$FlaSRSession,<|"Command"->expr,"Argu
 Options[extractAmps]={partVal->{}};
 extractAmps[system_,OptionsPattern[]]:=Module[{amplitudes,colNames,extractParticles,partVal=OptionValue[partVal]},
 amplitudes=pyEval["System.extract_amps",system];
-colNames={"Processes","QNs","n-tuples","Coords","Binary indices","q factor","mu","CG"};
+colNames={"Process","QN label","n-tuple","Coord","Binary index","q factor","mu","CG"};
 amplitudes=Map[AssociationThread[colNames,#]&]@amplitudes;
-amplitudes[[All,"Multiplet components"]]=Map[{#[[1]],#[[3]]}&,amplitudes[[All,"Processes"]],{2}];
+amplitudes[[All,"Multiplet components"]]=Map[{#[[1]],#[[3]]}&,amplitudes[[All,"Process"]],{2}];
 
 (* Processes from particle names *)
 extractParticles[particles_,indices_]:=MapThread[MapThread[Part,{#1,#2}]&,{particles,indices}];
 If[Length[partVal]>0,
-(amplitudes[[All,"Processes"]]=Map[{extractParticles[partVal,#[[1]]],extractParticles[partVal,#[[2]]]}&,amplitudes[[All,"Processes"]]];
-amplitudes[[All,"CKM"]]=Map[#[[2]]&,amplitudes[[All,"Processes"]],{2}];
-amplitudes[[All,"Processes"]]=Map[{#[[1]],#[[3]]}&,amplitudes[[All,"Processes"]],{2}];
-amplitudes[[All,"Processes"]]=Map[StringRiffle,amplitudes[[All,"Processes"]],{-2}];
-amplitudes[[All,"Processes"]]=Map[{StringJoin[#[[1]]," \[Rule] ",#[[2]]]}&,amplitudes[[All,"Processes"]],{2}];
-amplitudes[[All,"Processes"]]=Flatten/@amplitudes[[All,"Processes"]];
+(amplitudes[[All,"Process"]]=Map[{extractParticles[partVal,#[[1]]],extractParticles[partVal,#[[2]]]}&,amplitudes[[All,"Process"]]];
+amplitudes[[All,"CKM"]]=Map[#[[2]]&,amplitudes[[All,"Process"]],{2}];
+amplitudes[[All,"Process"]]=Map[{#[[1]],#[[3]]}&,amplitudes[[All,"Process"]],{2}];
+amplitudes[[All,"Process"]]=Map[StringRiffle,amplitudes[[All,"Process"]],{-2}];
+amplitudes[[All,"Process"]]=Map[{StringJoin[#[[1]]," \[Rule] ",#[[2]]]}&,amplitudes[[All,"Process"]],{2}];
+amplitudes[[All,"Process"]]=Flatten/@amplitudes[[All,"Process"]];
 ),
-amplitudes=KeyDrop[#,"Processes"]&/@amplitudes;
+amplitudes=KeyDrop[#,"Process"]&/@amplitudes;
 ];
 
-amplitudes[[All,"QNs"]]=Map[If[#>0,"+"<>ToString[Rationalize[#],StandardForm],ToString[Rationalize[#],StandardForm]]&,amplitudes[[All,"QNs"]],{-1}];
-amplitudes[[All,"QNs"]]=Map[StringRiffle,amplitudes[[All,"QNs"]],{-2}];
-amplitudes[[All,"QNs"]]=Map[{StringJoin[#[[1]],ToString[Overscript[" \[Rule] ",#[[2]]],StandardForm],#[[3]]]}&,amplitudes[[All,"QNs"]],{2}];
-amplitudes[[All,"QNs"]]=Flatten/@amplitudes[[All,"QNs"]];
+amplitudes[[All,"QN label"]]=Map[If[#>0,"+"<>ToString[Rationalize[#],StandardForm],ToString[Rationalize[#],StandardForm]]&,amplitudes[[All,"QN label"]],{-1}];
+amplitudes[[All,"QN label"]]=Map[StringRiffle,amplitudes[[All,"QN label"]],{-2}];
+amplitudes[[All,"QN label"]]=Map[{StringJoin[#[[1]],ToString[Overscript[" \[Rule] ",#[[2]]],StandardForm],#[[3]]]}&,amplitudes[[All,"QN label"]],{2}];
+amplitudes[[All,"QN label"]]=Flatten/@amplitudes[[All,"QN label"]];
 
 amplitudes[[All,"mu"]]=Map[Sqrt[#[[1]]]*#[[2]]&,amplitudes[[All,"mu"]]]; (* mu factors *)
 amplitudes[[All,"CG"]]=Map[ClebschGordan@@Rationalize[#]&,amplitudes[[All,"CG"]]]; (* CG coeffs from symmetrization *)
@@ -315,7 +315,7 @@ amplitudes=extractAmps[system,partVal->particles];
 amplitudes=KeyDrop[#,"q factor"]&/@amplitudes;
 
 (* Set identically 0 amplitude columns to 0 *)
-indices=amplitudes[[All,"Binary indices"]];
+indices=amplitudes[[All,"Binary index"]];
 selfConj=Table[If[indices[[i,1]]==indices[[i,2]],i,Nothing],{i,Length[indices]}];
 If[Length[selfConj]>0,
 ASRs=MapIndexed[If[#1=={},
@@ -404,7 +404,7 @@ A2SRs=MapIndexed[If[OddQ[#2[[1]]-1]&&(#2[[1]]-1>=3),keepMatchingSRs[A2SRs,#2[[1]
 
 
 (* Diff and int observables *)
-integrateA2SRs[]:=Module[{inMulti,outMulti,ampIndices,uniqueInMulti,uniqueOutMulti,uniqueKeyPosInMulti,uniqueKeyPosOutMulti,formIndexPairs,ampIndexPairs,uniqueAmps,intChannelNos,convertToAmpPairs,negCols,identicalColGroups,negMatCols,integrateA2SRMat},
+integrateA2SRs[]:=Module[{inMulti,outMulti,ampIndices,uniqueInMulti,uniqueOutMulti,uniqueKeyPosInMulti,uniqueKeyPosOutMulti,formIndexPairs,ampIndexPairs,uniqueAmps,intChannelIDs,convertToAmpPairs,negCols,identicalColGroups,negMatCols,integrateA2SRMat},
 (* List out amplitudes as {{unique in multiplet key index, component},{unique out multiplet key index, component}}. Use this to associate unique amplitudes to indices of all single amplitudes corresponding to a given amplitude. *)
 inMulti=system[["Multiplets"]][[1]]; (* list of inputted multiplets *)
 outMulti=system[["Multiplets"]][[3]];
@@ -421,11 +421,11 @@ ampIndexPairs=formIndexPairs/@ampIndices; (* amp indices list becomes {unique mu
 uniqueAmps=PositionIndex[Map[({#[[1]],Sort[#[[2]]]})&,ampIndexPairs]]; (* assoc of unique amp {{in keys and components},{out keys and components}} -> index of col in |A|^2 sr matrices. initial states are exact matches, final states up to permutations *)
 
 
-(* Assign integrated channel numbers to amplitudes *)
-intChannelNos=ConstantArray[0,Length[ampIndexPairs]];
-MapIndexed[(intChannelNos[[#1]]=#2[[1]])&,Values[uniqueAmps]];
-intChannelNos=ArrayReshape[intChannelNos,{Length[ampIndexPairs]/2,2}]; (* channels enumerated in order of appearance in amp table *)
-system[["Amplitudes"]][[All,"Integrated channel #s"]]=intChannelNos; (* assigns an integrated channel number to each amplitude *)
+(* Assign integrated channel IDs to amplitudes *)
+intChannelIDs=ConstantArray[0,Length[ampIndexPairs]];
+MapIndexed[(intChannelIDs[[#1]]=#2[[1]])&,Values[uniqueAmps]];
+intChannelIDs=ArrayReshape[intChannelIDs,{Length[ampIndexPairs]/2,2}]; (* channels enumerated in order of appearance in amp table *)
+system[["Amplitudes"]][[All,"Integrated channel ID"]]=intChannelIDs; (* assigns an integrated channel ID to each amplitude *)
 
 
 (* Form list of amp pair cols to negate in \[CapitalDelta] matrices (negCols), list of groups of amp pair cols to combine (identicalColGroups), and association of unique amp pair col -> k! (uniqueAmps) *)
@@ -490,8 +490,8 @@ If[phys&&(obs==="Int"),integrateA2SRs[]];
 
 (* Set identically 0 amplitude-squared columns to 0 *)
 indices=If[phys&&(obs==="Int"),
-system[["Amplitudes",system[["Unique amp pairs"]]]][[All,"Integrated channel #s"]],
-system[["Amplitudes"]][[All,"Binary indices"]]
+system[["Amplitudes",system[["Unique amp pairs"]]]][[All,"Integrated channel ID"]],
+system[["Amplitudes"]][[All,"Binary index"]]
 ];
 selfConjs=Table[If[indices[[i,1]]==indices[[i,2]],i,Nothing],{i,Length[indices]}]; (* includes fake self-conjs in int obs case *)
 If[Length[selfConjs]>0,
@@ -518,13 +518,13 @@ AssociateTo[system,<|"n A2SRs"->nA2SRs,"A2SRs"->A2SRs,"Amp vector"->None,"SR ext
 (* Returns the total number of amplitudes in the system *)
 numAmps[system_,nPairs_:False]:=Module[{amplitudes=system[["Amplitudes"]]},
 If[!nPairs,
-Length@DeleteDuplicates@Flatten@amplitudes[[All,"Binary indices"]],
-Length@Flatten@amplitudes[[All,"Coords"]]
+Length@DeleteDuplicates@Flatten@amplitudes[[All,"Binary index"]],
+Length@Flatten@amplitudes[[All,"Coord"]]
 ]
 ];
 
 
-defaultAmpKeys={"Processes","QNs","n-tuples","Coords","Binary indices","mu","CG","CKM","Multiplet components","Integrated channel #s"};
+defaultAmpKeys={"Process","QN label","n-tuple","Coord","Binary index","mu","CG","CKM","Multiplet components","Integrated channel ID"};
 
 
 (* Adds a column to amplitudes *)
@@ -542,7 +542,7 @@ labelVals=Which[
 labeling=="Amplitude pairs",
 labels,
 labeling=="Amplitudes",
-(indices=amplitudes[[All,"Binary indices"]];
+(indices=amplitudes[[All,"Binary index"]];
 labelIndices=Sort[Join[Range[nAmps],Table[If[indices[[i,1]]==indices[[i,2]],2*i-1,Nothing],{i,Length[indices]}]]];
 Partition[Table[Flatten[labels][[i]],{i,labelIndices}],2]
 ),
@@ -577,12 +577,12 @@ unlabelAmps::argval="Invalid column name(s) `1`. Cannot remove any of the built-
 Options[printAmps]={showFactors->False};
 printAmps[system_,OptionsPattern[]]:=Module[{amplitudes=system[["Amplitudes"]],indices,selfConj,nAmps,showFactors=OptionValue[showFactors],signs},
 (* Delete self-conjugate duplicate values from display *)
-indices=amplitudes[[All,"Binary indices"]];
+indices=amplitudes[[All,"Binary index"]];
 selfConj=Table[If[indices[[i,1]]==indices[[i,2]],i,Nothing],{i,Length[indices]}];
 amplitudes[[selfConj]]=Map[If[ListQ[#],#[[1]],#]&,amplitudes[[selfConj]],{2}];
 
 nAmps=numAmps[system];
-If[!showFactors,amplitudes=KeyDrop[#,{"Binary indices","mu","CG","Multiplet components"}]&/@amplitudes,Null]; (* show/hide internal factors from display *)
+If[!showFactors,amplitudes=KeyDrop[#,{"Binary index","mu","CG","Multiplet components"}]&/@amplitudes,Null]; (* show/hide internal factors from display *)
 signs=If[system[["p factor"]]==1,{"-","+"},{"+","-"}];
 
 Print["Amplitude table","\n",
@@ -658,7 +658,7 @@ SRs
 
 (* Return a list of two amplitude vectors (either a,s or two identical A) formatted according to ampFormat. Restore CKM factors and square if necessary, also correct for self-conjugates. *)
 ampsToVectors[amps_]:=Module[{ampsToVector,vec1,vecList},
-If[ampFormat=="Processes"&&!KeyExistsQ[amps[[1]],"Processes"],Message[printSRs::invalidformat];Return[$Failed],Null];
+If[ampFormat=="Process"&&!KeyExistsQ[amps[[1]],"Process"],Message[printSRs::invalidformat];Return[$Failed],Null];
 
 (* Format amplitude vector for printing *)
 ampsToVector[ampSym_Symbol]:=Module[{vector,rule},
@@ -666,21 +666,21 @@ ampsToVector[ampSym_Symbol]:=Module[{vector,rule},
 vector=Map[ampSym[#]&,
 If[pairedBasis,
 (Switch[ampFormat, (* a/s amps *)
-"Processes",(Message[printSRs::invalidformat];Return[$Failed]),
-"QNs",amps[[All,"QNs",1]], (* a/s-type amps with QNs *)
-"n-tuples",amps[[All,"n-tuples",1]], (* a/s-type amps with n-tuples *)
-"Coords",amps[[All,"Coords"]], (* a/s-type amps with coords *)
-"Binary indices",amps[[All,"Binary indices",1]], (* a/s-type amps with numbered subscripts *)
+"Process",(Message[printSRs::invalidformat];Return[$Failed]),
+"QN label",amps[[All,"QN label",1]], (* a/s-type amps with QNs *)
+"n-tuple",amps[[All,"n-tuple",1]], (* a/s-type amps with n-tuples *)
+"Coord",amps[[All,"Coord"]], (* a/s-type amps with coords *)
+"Binary index",amps[[All,"Binary index",1]], (* a/s-type amps with numbered subscripts *)
 _String/;KeyExistsQ[amps[[1]],ampFormat],amps[[All,ampFormat]], (* custom amplitude format *)
 _,(Message[printSRs::invalidformat];Return[$Failed])
 ]
 ),
 (Switch[ampFormat, (* A amps *)
-"Processes",Flatten@amps[[All,"Processes"]], (* A amps with physical processes *)
-"QNs",Flatten@amps[[All,"QNs"]], (* A amps with QNs *)
-"n-tuples",Flatten@amps[[All,"n-tuples"]], (* A amps with n-tuples *)
-"Coords",(Message[printSRs::invalidformat];Return[$Failed]),
-"Binary indices",Flatten@amps[[All,"Binary indices"]], (* A amps with numbered subscripts *)
+"Process",Flatten@amps[[All,"Process"]], (* A amps with physical processes *)
+"QN label",Flatten@amps[[All,"QN label"]], (* A amps with QNs *)
+"n-tuple",Flatten@amps[[All,"n-tuple"]], (* A amps with n-tuples *)
+"Coord",(Message[printSRs::invalidformat];Return[$Failed]),
+"Binary index",Flatten@amps[[All,"Binary index"]], (* A amps with numbered subscripts *)
 _String/;KeyExistsQ[amps[[1]],ampFormat],Flatten@amps[[All,ampFormat]], (* custom amplitude format *)
 _,(Message[printSRs::invalidformat];Return[$Failed])
 ]
@@ -690,7 +690,7 @@ _,(Message[printSRs::invalidformat];Return[$Failed])
 
 
 (* Format vector of indexed variables for printing *)
-rule=If[ampFormat=="Processes"||ampFormat=="QNs",
+rule=If[ampFormat=="Process"||ampFormat=="QN label",
 expr_Symbol[i_]/;expr=!=List:>StringJoin[ToString[expr],"(",i,")"],
 expr_Symbol[i_]/;expr=!=List:>Subscript[expr,i]
 ];
@@ -762,11 +762,11 @@ sysVal[["ASRs"]]
 (* Extract p factor, amplitude table (reduced to unique integrated rows if necessary), and indices of self-conjugate amp pairs *)
 p=sysVal[["p factor"]];
 amplitudes=sysVal[["Amplitudes"]];
-uniqueAmps=If[squared&&(KeyExistsQ[amplitudes[[1]],"Integrated channel #s"]),Flatten[First/@Values[PositionIndex[Sort/@amplitudes[[All,"Integrated channel #s"]]]]]]; (* unique integrated amp pair rows *)
-If[squared&&(KeyExistsQ[amplitudes[[1]],"Integrated channel #s"]),amplitudes=amplitudes[[uniqueAmps]]];(* if printing A2SRs for sys with integrated observables, reduce amps assoc to unique amps. note amp table printing is unaffected because it's handled by printAmps *)
-indices=If[squared&&(KeyExistsQ[amplitudes[[1]],"Integrated channel #s"]),
-amplitudes[[All,"Integrated channel #s"]],
-amplitudes[[All,"Binary indices"]]
+uniqueAmps=If[squared&&(KeyExistsQ[amplitudes[[1]],"Integrated channel ID"]),Flatten[First/@Values[PositionIndex[Sort/@amplitudes[[All,"Integrated channel ID"]]]]]]; (* unique integrated amp pair rows *)
+If[squared&&(KeyExistsQ[amplitudes[[1]],"Integrated channel ID"]),amplitudes=amplitudes[[uniqueAmps]]];(* if printing A2SRs for sys with integrated observables, reduce amps assoc to unique amps. note amp table printing is unaffected because it's handled by printAmps *)
+indices=If[squared&&(KeyExistsQ[amplitudes[[1]],"Integrated channel ID"]),
+amplitudes[[All,"Integrated channel ID"]],
+amplitudes[[All,"Binary index"]]
 ];
 selfConjs=Table[If[indices[[i,1]]==indices[[i,2]],{i},Nothing],{i,Length[indices]}]; (* Some notes: formatSRMats combines self-conj cols in SR mats written in a non-paired amplitude basis, the code below (beginning with If[pairedBasis...]) directly drops identically 0 cols for SR mats in a paired basis, and ampsToVectors deletes redundant or identically 0 amps from the amp vector(s). Includes fake self-conjs in integrated observables case. Indices are formatted like {{1},{2},...}. *)
 
@@ -778,7 +778,7 @@ pairedBasis=Switch[Length[syms],
 _,(Message[printSRs::invalidformat];Return[$Failed])
 ]; (* true if amplitudes are in a paired basis *)
 If[ampFormat==None,
-If[!pairedBasis&&(KeyExistsQ[amplitudes[[1]],"Processes"]),ampFormat="Processes",ampFormat="n-tuples"],
+If[!pairedBasis&&(KeyExistsQ[amplitudes[[1]],"Process"]),ampFormat="Process",ampFormat="n-tuple"],
 Null
 ]; (* if no ampFormat was specified, set to n-tuples by default unless it's a physical system with A/|A|^2/\[CapitalGamma] amplitudes *)
 
