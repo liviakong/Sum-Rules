@@ -46,16 +46,16 @@ Options:
 Returns:
 - system (Association): All information about the system's representations, amplitudes, and ASRs. Keys and values:
 	- \"Irreps\" (List): Inputted U-spin representations (List of Reals) in {{in reps}, {H rep}, {out reps}} format.
-	- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Symbols) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty for group-theoretic systems.
+	- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Symbols) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty when phys->False.
 	- \"n doublets\" (Real): Number of would-be doublets.
 	- \"p factor\" (Real): (-1)^p factor for defining a/s-type amplitudes.
 	- \"n amps\" (Real): Number of amplitudes in the system.
 	- \"Amplitudes\" (List): Contains an Association for each amplitude pair in the system. Keys and values:
-		- \"Processes\" (List): Contains physical processes (String) for an amplitude and its U-spin conjugate. Only available for physical systems.
-		- \"QNs\" (List): Contains m quantum number labels (String), where m is the third component of U-spin, for an amplitude and its U-spin conjugate.
-		- \"n-tuples\" (List): Contains n-tuple labels (String) for an amplitude and its U-spin conjugate. n-tuples represent amplitudes as comma-separated tuples of substrings, where each substring is comprised of '-'s and '+'s and encodes the u and m QNs of a component of a participating multiplet. Signs are inverted for initial state and Hamiltonian components.
-		- \"Coords\" (String): Coordinate (String) for an amplitude pair in the lattice used to derive sum rules.
-		- \"Binary indices\" (List): Contains indices (Real), written in base 10, for an amplitude and its U-spin conjugate. Indices are derived by converting the n-tuples into binary numbers through '-' <-> 0 and '+' <-> 1 and removing commas.
+		- \"Process\" (List): Contains physical processes (String) for an amplitude and its U-spin conjugate. Only available for physical systems.
+		- \"QN label\" (List): Contains m quantum number labels (String), where m is the third component of U-spin, for an amplitude and its U-spin conjugate.
+		- \"n-tuple\" (List): Contains n-tuple labels (String) for an amplitude and its U-spin conjugate. n-tuples represent amplitudes as comma-separated tuples of substrings, where each substring is comprised of '-'s and '+'s and encodes the u and m QNs of a component of a participating multiplet. Signs are inverted for initial state and Hamiltonian components.
+		- \"Coord\" (String): Coordinate (String) for an amplitude pair in the lattice used to derive sum rules.
+		- \"Binary index\" (List): Contains binary indices (Real), written in base 10, for an amplitude and its U-spin conjugate. Indices are derived by converting the n-tuples into binary numbers through '-' <-> 0 and '+' <-> 1 and removing commas.
 		- \"mu\" (Real): mu-factor for the coordinate in the lattice used to derive sum rules.
 		- \"CG\" (Real): Clebsch-Gordan coefficient from symmetrization for systems without doublets. Equal to 1 for all amplitudes for a system with at least one doublet.
 		- \"CKM\" (List): Contains weak interaction factors (Expression) from the Hamiltonian. Only appears for physical systems.
@@ -86,20 +86,20 @@ Options:
 Returns:
 - system (Association): All information about the system's representations, amplitudes, ASRs, and A2SRs. Keys and values:
 	- \"Irreps\" (List): Inputted U-spin representations (List of Reals) in {{in reps}, {H rep}, {out reps}} format.
-	- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Symbols) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty for group-theoretic systems.
+	- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Symbols) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty when phys->False.
 	- \"n doublets\" (Real): Number of would-be doublets.
 	- \"p factor\" (Real): (-1)^p factor for defining a/s-type amplitudes.
 	- \"n amps\" (Real): Number of amplitudes in the system.
 	- \"Amplitudes\" (List): Contains an Association for each amplitude pair in the system. Keys and values:
-		- \"Processes\" (List): Contains physical processes (String) for an amplitude and its U-spin conjugate. Only available for physical systems.
-		- \"QNs\" (List): Contains m quantum number labels (String), where m is the third component of U-spin, for an amplitude and its U-spin conjugate.
-		- \"n-tuples\" (List): Contains n-tuple labels (String) for an amplitude and its U-spin conjugate. n-tuples represent amplitudes as comma-separated tuples of substrings, where each substring is comprised of '-'s and '+'s and encodes the u and m QNs of a component of a participating multiplet. Signs are inverted for initial state and Hamiltonian components.
-		- \"Coords\" (String): Coordinate (String) for an amplitude pair in the lattice used to derive sum rules.
-		- \"Binary indices\" (List): Contains indices (Real), written in base 10, for an amplitude and its U-spin conjugate. Indices are derived by converting the n-tuples into binary numbers through '-' <-> 0 and '+' <-> 1 and removing commas.
+		- \"Process\" (List): Contains physical processes (String) for an amplitude and its U-spin conjugate. Only available for physical systems.
+		- \"QN label\" (List): Contains m quantum number labels (String), where m is the third component of U-spin, for an amplitude and its U-spin conjugate.
+		- \"n-tuple\" (List): Contains n-tuple labels (String) for an amplitude and its U-spin conjugate. n-tuples represent amplitudes as comma-separated tuples of substrings, where each substring is comprised of '-'s and '+'s and encodes the u and m QNs of a component of a participating multiplet. Signs are inverted for initial state and Hamiltonian components.
+		- \"Coord\" (String): Coordinate (String) for an amplitude pair in the lattice used to derive sum rules.
+		- \"Binary index\" (List): Contains binary indices (Real), written in base 10, for an amplitude and its U-spin conjugate. Indices are derived by converting the n-tuples into binary numbers through '-' <-> 0 and '+' <-> 1 and removing commas.
 		- \"mu\" (Real): mu-factor for the coordinate in the lattice used to derive sum rules.
 		- \"CG\" (Real): Clebsch-Gordan coefficient from symmetrization for systems without doublets. Equal to 1 for all amplitudes for a system with at least one doublet.
 		- \"CKM\" (List): Contains weak interaction factors (Expression) from the Hamiltonian. Only appears for physical systems.
-		- \"Integrated channel #s\" (List): Contains numbers (Real) enumerating unique integrated channels by the order in which they appear in the amplitude table. Only appears for physical systems with obs->\"Int\".
+		- \"Integrated channel ID\" (List): Contains numbers (Real) enumerating unique integrated channels by the order in which they appear in the amplitude table. Only appears for physical systems with obs->\"Int\".
 	- \"n ASRs\" (List): Contains the number of amplitude sum rules (Real) found at each order of breaking.
 	- \"ASRs\" (List): Contains matrices of amplitude sum rule coefficients (Real) listed by order of breaking.
 	- \"n A2SRs\" (List): Contains the number of amplitude-squared sum rules (Real) found at each order of breaking.
@@ -175,7 +175,7 @@ Arguments:
 Options:
 - ampType (List): Contains 1 or 2 symbol(s) to select amplitude type. Convention is to set ampType->{A} for A-type amplitudes and ampType->{a,s} for a/s-type amplitudes. Default: ampType->None. Note: only one of ampType or amp2Type should be specified to print either ASRs or A2SRs; if both are specified, printSRs will print A2SRs by default.
 - amp2Type (List): Contains 1 or 2 symbol(s) to select squared amplitude type. Convention is to set amp2Type->{A} for |A|^2 amplitudes-squared and amp2Type->{Δ,Σ} for Δ/Σ-type amplitudes-squared. Default: amp2Type->None. Note: only one of ampType or amp2Type should be specified to print either ASRs or A2SRs; if both are specified, printSRs will print A2SRs by default.
-- ampFormat (String): Labeling convention for displaying amplitudes. Options are physical process names (\"Processes\", only available for A-type amps), m quantum numbers (\"QNs\"), n-tuples (\"n-tuples\"), coordinate notation (\"Coords\", only available for a/s-type amps), numbered indices (\"Binary indices\"), or user-defined labels for a column of the amplitude table (name of custom column). Default: ampFormat->\"n-tuples\" unless the system is a physical system, in which case ampFormat->\"Processes\".
+- ampFormat (String): Labeling convention for displaying amplitudes. Options are physical process names (\"Process\", only available for A-type amps), m quantum numbers (\"QN label\"), n-tuples (\"n-tuple\"), coordinate notation (\"Coord\", only available for a/s-type amps), binary indices (\"Binary index\"), or user-defined labels for a column of the amplitude table (name of custom column). Default: ampFormat->\"n-tuple\" unless the system is a physical system, in which case ampFormat->\"Process\".
 - showSRs (True|False): Indicates whether to print sum rules. Default: showSRs->True.
 - expandSRs (True|False): Indicates whether to display each row of a sum rules matrix as an expanded algebraic expression of amplitudes (True) or to keep each row as a list of coefficients (False). Default: expandSRs->False.
 - CKM (True|False): Indicates whether to include CKM factors in the sum rules. Default: CKM->False.
@@ -204,7 +204,7 @@ Options:
 - showA2SRs (True|False): Indicates whether to print A2SRs. Default: showA2SRs->True. Note: while both ampType and amp2Type can be separately specified, the other formatting options (e.g., ampFormat) will be shared for printing both ASRs and A2SRs.
 - ampType (List): Contains 1 or 2 symbol(s) to select amplitude type. Convention is to set ampType->{A} for A-type amplitudes and ampType->{a,s} for a/s-type amplitudes. Default: ampType->None. Note: only one of ampType or amp2Type should be specified to print either ASRs or A2SRs; if both are specified, printSRs will print A2SRs by default.
 - amp2Type (List): Contains 1 or 2 symbol(s) to select squared amplitude type. Convention is to set amp2Type->{A} for |A|^2 amplitudes-squared and amp2Type->{Δ,Σ} for Δ/Σ-type amplitudes-squared. Default: amp2Type->None. Note: only one of ampType or amp2Type should be specified to print either ASRs or A2SRs; if both are specified, printSRs will print A2SRs by default.
-- ampFormat (String): Labeling convention for displaying amplitudes. Options are physical process names (\"Processes\", only available for A-type amps), m quantum numbers (\"QNs\"), n-tuples (\"n-tuples\"), coordinate notation (\"Coords\", only available for a/s-type amps), numbered indices (\"Binary indices\"), or user-defined labels for a column of the amplitude table (name of custom column). Default: ampFormat->\"n-tuples\" unless the system is a physical system, in which case ampFormat->\"Processes\".
+- ampFormat (String): Labeling convention for displaying amplitudes. Options are physical process names (\"Process\", only available for A-type amps), m quantum numbers (\"QN label\"), n-tuples (\"n-tuple\"), coordinate notation (\"Coord\", only available for a/s-type amps), binary indices (\"Binary index\"), or user-defined labels for a column of the amplitude table (name of custom column). Default: ampFormat->\"n-tuple\" unless the system is a physical system, in which case ampFormat->\"Process\".
 - expandSRs (True|False): Indicates whether to display each row of a sum rules matrix as an expanded algebraic expression of amplitudes (True) or to keep each row as a list of coefficients (False). Default: expandSRs->False.
 - CKM (True|False): Indicates whether to include CKM factors in the sum rules. Default: CKM->False.
 - b (All|Real|List): Breaking order(s) at which to print sum rules. User can print sum rules to all possible orders of breaking (All), at a particular order (Real, 0 <= b <= highest order of breaking), or over a range of orders of breaking ({start b (min: 0), end b (max: highest order of breaking, or All), increment}). Default: b->All.
