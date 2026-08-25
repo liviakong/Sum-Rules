@@ -37,7 +37,7 @@ generateASRs[in,h,out] finds amplitudes and amplitude sum rules (ASRs) for a giv
 
 Arguments:
 - in (List): Contains U-spins (Integer|Rational) or particle multiplets (List of Strings) in the incoming state.
-- h (List): Contains U-spins (Integer|Rational) or coefficients (List of Symbols) in the Hamiltonian.
+- h (List): Contains U-spins (Integer|Rational) or coefficients (List of Expressions) in the Hamiltonian.
 - out (List): Contains U-spins (Integer|Rational) or particle multiplets (List of Strings) in the outgoing state.
 
 Options:
@@ -46,7 +46,7 @@ Options:
 Returns:
 - system (Association): All information about the system's representations, amplitudes, and ASRs. Keys and values:
 	- \"Irreps\" (List): Inputted U-spin representations (List of Integers or Rationals) in {{in reps}, {H rep}, {out reps}} format.
-	- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Symbols) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty when phys->False.
+	- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Expressions) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty when phys->False.
 	- \"n doublets\" (Integer): Number of would-be doublets.
 	- \"p factor\" (Integer): (-1)^p factor for defining a/s-type amplitudes.
 	- \"n amps\" (Integer): Number of amplitudes in the system.
@@ -76,7 +76,7 @@ generateSRs[in,h,out] finds amplitudes, amplitude sum rules (ASRs), and amplitud
 
 Arguments:
 - in (List): Contains U-spins (Integer|Rational) or particle multiplets (List of Strings) in the incoming state.
-- h (List): Contains U-spins (Integer|Rational) or coefficients (List of Symbols) in the Hamiltonian.
+- h (List): Contains U-spins (Integer|Rational) or coefficients (List of Expressions) in the Hamiltonian.
 - out (List): Contains U-spins (Integer|Rational) or particle multiplets (List of Strings) in the outgoing state.
 
 Options:
@@ -86,7 +86,7 @@ Options:
 Returns:
 - system (Association): All information about the system's representations, amplitudes, ASRs, and A2SRs. Keys and values:
 	- \"Irreps\" (List): Inputted U-spin representations (List of Integers or Rationals) in {{in reps}, {H rep}, {out reps}} format.
-	- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Symbols) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty when phys->False.
+	- \"Multiplets\" (List): Inputted multiplets (List of Strings) and factors (List of Expressions) in {{in multiplets}, {H factors}, {out multiplets}} format for physical systems. Empty when phys->False.
 	- \"n doublets\" (Integer): Number of would-be doublets.
 	- \"p factor\" (Integer): (-1)^p factor for defining a/s-type amplitudes.
 	- \"n amps\" (Integer): Number of amplitudes in the system.
